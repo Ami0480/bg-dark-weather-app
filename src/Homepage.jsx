@@ -11,10 +11,10 @@ export default function Homepage() {
         />
         <input type="submit" value="Search" />
       </form>
-      <h1>Perth</h1>
-      <p>Monday Sep 27 | CLOUDY</p>
-      <p>Humidity: 48%, Wind: 7km/h</p>
-      <h2>20°C</h2>
+      <h1 className="text-4xl">Perth</h1>
+      <p className="text-sm">Monday Sep 27 | CLOUDY</p>
+      <p className="text-sm">Humidity: 48%, Wind: 7km/h</p>
+      <h2 className="text-4xl">20°C</h2>
       <img src="/images/cloudy.png" alt="current icon" className="w-24 h-24" />
     </div>
   );
