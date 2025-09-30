@@ -1,12 +1,26 @@
 import React from "react";
+import Time from "./Time";
 import currentIcon from "/images/cloudy.png";
 
-export default function Homepage({ city, temperature }) {
+export default function Homepage({
+  city,
+  dt,
+  timezone,
+  temperature,
+  description,
+  humidity,
+  wind,
+}) {
   return (
     <div>
       <h1 className="text-4xl mt-8 mb-2 capitalize">{city}</h1>
-      <p className="text-md">Monday Sep 27 | CLOUDY</p>
-      <p className="text-md">Humidity: 48%, Wind: 7km/h</p>
+      <div className="text-md">
+        <Time dt={dt} timezone={timezone} />
+        <span className="uppercase">{description}</span>
+      </div>
+      <div className="text-md">
+        Humidity: {humidity}%, Wind: {wind}km/h
+      </div>
       <h2 className="text-6xl mt-5">{temperature}°C</h2>
       <img src={currentIcon} alt="current icon" className="w-34 h-34" />
 

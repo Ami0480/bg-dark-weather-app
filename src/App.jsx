@@ -7,6 +7,8 @@ import "./App.css";
 function App() {
   const [weather, setWeather] = useState({
     city: "Perth",
+    dt: Math.floor(Date.now() / 1000),
+    timezone: 8 * 3600,
     temperature: 20,
     description: "ClOUDY",
     humidity: 48,
@@ -27,7 +29,15 @@ function App() {
 
       console.log(data);
 
-      setWeather({ city: data.name, temperature: Math.round(data.main.temp) });
+      setWeather({
+        city: data.name,
+        temperature: Math.round(data.main.temp),
+        description: data.weather[0].description,
+        humidity: data.main.humidity,
+        wind: data.wind.speed,
+        dt: data.dt,
+        timezone: data.timezone,
+      });
     } catch (error) {
       alert(error.message);
     }
@@ -42,6 +52,8 @@ function App() {
         description={weather.description}
         humidity={weather.humidity}
         wind={weather.wind}
+        dt={weather.dt}
+        timezone={weather.timezone}
       />
     </div>
   );
