@@ -1,13 +1,13 @@
 import React from "react";
 import currentIcon from "/images/cloudy.png";
 
-export default function Homepage({ city }) {
+export default function Homepage({ city, temperature }) {
   return (
     <div>
       <h1 className="text-4xl mt-8 mb-2 capitalize">{city}</h1>
       <p className="text-md">Monday Sep 27 | CLOUDY</p>
       <p className="text-md">Humidity: 48%, Wind: 7km/h</p>
-      <h2 className="text-6xl mt-5">20°C</h2>
+      <h2 className="text-6xl mt-5">{temperature}°C</h2>
       <img src={currentIcon} alt="current icon" className="w-34 h-34" />
 
       <div className="flex flex-row mt-44 place-content-between">
