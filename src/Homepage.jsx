@@ -1,18 +1,10 @@
 import React from "react";
 import currentIcon from "/images/cloudy.png";
 
-export default function Homepage() {
+export default function Homepage({ city }) {
   return (
     <div>
-      <form className="mt-3 mb-3 text-center">
-        <input
-          type="search"
-          placeholder="Enter a city.."
-          className="bg-gray-200 pt-2 pb-2 pl-2 rounded-md"
-        />
-        <input type="submit" value="Search" className="hidden" />
-      </form>
-      <h1 className="text-4xl mt-8 mb-2">Perth</h1>
+      <h1 className="text-4xl mt-8 mb-2 capitalize">{city}</h1>
       <p className="text-md">Monday Sep 27 | CLOUDY</p>
       <p className="text-md">Humidity: 48%, Wind: 7km/h</p>
       <h2 className="text-6xl mt-5">20°C</h2>

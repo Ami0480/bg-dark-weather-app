@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import Homepage from "./Homepage";
+import Search from "./Search";
 
 import "./App.css";
 
 function App() {
+  const [city, setCity] = useState("Perth");
+
   return (
     <div>
-      <Homepage />
+      <Search onSearch={setCity} />
+      <Homepage city={city} />
     </div>
   );
 }
