@@ -10,8 +10,8 @@ export default function Homepage({
   description,
   humidity,
   wind,
-  icon,
   weatherCode,
+  forecast,
 }) {
   return (
     <div>
@@ -37,36 +37,38 @@ export default function Homepage({
         className="w-24 h-24"
       />
 
-      <div className="flex flex-row mt-44 place-content-between">
-        <div className="flex flex-col items-center">
-          <p>Mon</p>
-          <img src={icon} alt="current icon" className="w-14 h-14" />
-          <p>Cloudy</p>
-          <p>18°C</p>
-        </div>
-        <div className="flex flex-col items-center">
-          <p>Mon</p>
-          <img src={icon} alt="current icon" className="w-14 h-14" />
-          <p>Cloudy</p>
-          <p>18°C</p>
-        </div>
-        <div className="flex flex-col items-center">
-          <p>Mon</p>
-          <img src={icon} alt="current icon" className="w-14 h-14" />
-          <p>Cloudy</p>
-          <p>18°C</p>
-        </div>
-        <div className="flex flex-col items-center">
-          <p>Mon</p>
-          <img src={icon} alt="current icon" className="w-14 h-14" />
-          <p>Cloudy</p>
-          <p>18°C</p>
-        </div>
-        <div className="flex flex-col items-center">
-          <p>Mon</p>
-          <img src={icon} alt="current icon" className="w-14 h-14" />
-          <p>Cloudy</p>
-          <p>18°C</p>
+      <div className="mt-40">
+        <div className="flex flex-row place-content-between">
+          {forecast && forecast.length > 0 ? (
+            forecast.map((item, index) => {
+              const localTime = new Date((item.dt + timezone) * 1000);
+              const dayShort = localTime.toUTCString().split(",")[0];
+
+              return (
+                <div
+                  key={index}
+                  className="flex flex-col items-center gap-1 mr-1 ml-1"
+                >
+                  <p>{dayShort}</p>
+                  <video
+                    src={iconMap[item.weather[0].icon]}
+                    autoPlay
+                    loop
+                    muted
+                    preload="auto"
+                    className="w-16 h-16"
+                  />
+
+                  <h3 className="text-sm">
+                    {Math.round(item.main.temp)}
+                    <span className="text-sm">°C</span>
+                  </h3>
+                </div>
+              );
+            })
+          ) : (
+            <p>No forecast available</p>
+          )}
         </div>
       </div>
     </div>
