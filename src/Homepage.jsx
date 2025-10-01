@@ -30,10 +30,11 @@ export default function Homepage({
 
       <video
         src={iconMap[weatherCode]}
-        autoPlay={false}
+        autoPlay
         loop
         muted
         preload="auto"
+        playsInline
         className="w-24 h-24"
       />
 
@@ -52,10 +53,11 @@ export default function Homepage({
                   <p>{dayShort}</p>
                   <video
                     src={iconMap[item.weather[0].icon]}
-                    autoPlay={false}
+                    autoPlay
                     loop
                     muted
                     preload="auto"
+                    playsInline
                     className="w-16 h-16"
                   />
 
