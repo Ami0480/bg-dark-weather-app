@@ -63,6 +63,7 @@ export default function Homepage({
 
                   <h3 className="text-sm">
                     {Math.round(item.main.temp)}
+
                     <span className="text-sm">°C</span>
                   </h3>
                 </div>

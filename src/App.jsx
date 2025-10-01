@@ -21,8 +21,6 @@ function App() {
 
       const data = await resWeather.json();
 
-      console.log(forecast);
-
       setWeather({
         city: data.name,
         temperature: Math.round(data.main.temp),
