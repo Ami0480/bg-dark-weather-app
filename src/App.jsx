@@ -43,6 +43,7 @@ function App() {
         dt: data.dt,
         timezone: data.timezone,
         icon: `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`,
+        weatherCode: data.weather[0].icon,
       });
     } catch (error) {
       alert(error.message);
@@ -69,6 +70,7 @@ function App() {
           dt={weather.dt}
           timezone={weather.timezone}
           icon={weather.icon}
+          weatherCode={weather.weatherCode}
         />
       )}
     </div>

@@ -22,5 +22,5 @@ export default function Time({ dt, timezone }) {
 
   const localTime = `${day} ${hour}:${minute}`;
 
-  return <p className="text-md">{localTime}</p>;
+  return <p className="text-md mr-1">{localTime}</p>;
 }
