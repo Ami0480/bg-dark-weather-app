@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Homepage from "./Homepage";
 import Search from "./Search";
+import currentIcon from "./images/cloudy.png";
 
 import "./App.css";
 
@@ -13,11 +14,15 @@ function App() {
     description: "ClOUDY",
     humidity: 48,
     wind: 7,
+    icon: currentIcon,
   });
+
+  const [loading, setLoading] = useState(false);
 
   const apiKey = "d1193959d2d841ec7555416d715716a6";
 
   const handleSearch = async (cityName) => {
+    setLoading(true);
     try {
       const res = await fetch(
         `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=metric`
@@ -37,24 +42,35 @@ function App() {
         wind: data.wind.speed,
         dt: data.dt,
         timezone: data.timezone,
+        icon: `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`,
       });
     } catch (error) {
       alert(error.message);
+    } finally {
+      setLoading(false);
     }
   };
+  useEffect(() => {
+    handleSearch("Perth");
+  }, []);
 
   return (
     <div>
       <Search onSearch={handleSearch} />
-      <Homepage
-        city={weather.city}
-        temperature={weather.temperature}
-        description={weather.description}
-        humidity={weather.humidity}
-        wind={weather.wind}
-        dt={weather.dt}
-        timezone={weather.timezone}
-      />
+      {loading ? (
+        <p className="text-xl mt-20">Loading...</p>
+      ) : (
+        <Homepage
+          city={weather.city}
+          temperature={weather.temperature}
+          description={weather.description}
+          humidity={weather.humidity}
+          wind={weather.wind}
+          dt={weather.dt}
+          timezone={weather.timezone}
+          icon={weather.icon}
+        />
+      )}
     </div>
   );
 }
