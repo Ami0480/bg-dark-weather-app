@@ -21,9 +21,12 @@ export default function Homepage({
       <div className="text-md">
         Humidity: {humidity}%, Wind: {wind}km/h
       </div>
-      <h2 className="text-6xl mt-5">{temperature}°C</h2>
-      <img src={currentIcon} alt="current icon" className="w-34 h-34" />
+      <div className="flex flex-row mt-5">
+        <h2 className="text-6xl">{temperature} </h2>
+        <div className="text-3xl">°C</div>
+      </div>
 
+      <img src={currentIcon} alt="current icon" className="w-34 h-34" />
       <div className="flex flex-row mt-44 place-content-between">
         <div className="flex flex-col items-center">
           <p>Mon</p>
