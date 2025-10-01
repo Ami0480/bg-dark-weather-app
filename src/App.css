@@ -1,3 +1,5 @@
-#root {
-  padding: 30px;
+@reference "tailwindcss";
+
+.container {
+  @apply mx-auto;
 }

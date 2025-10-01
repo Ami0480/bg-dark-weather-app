@@ -14,7 +14,7 @@ export default function Homepage({
   forecast,
 }) {
   return (
-    <div>
+    <div className="container p-4">
       <h1 className="text-4xl mt-8 mb-2 capitalize">{city}</h1>
       <div className="flex flex-row text-md">
         <Time dt={dt} timezone={timezone} />
@@ -23,9 +23,27 @@ export default function Homepage({
       <div className="text-md">
         Humidity: {humidity}%, Wind: {wind}km/h
       </div>
-      <div className="flex flex-row mt-6">
-        <h2 className="text-7xl mb-2">{temperature} </h2>
-        <div className="text-3xl">°C</div>
+
+      <div className="flex">
+        <div className="flex flex-row mt-6">
+          <h2 className="text-7xl mb-2">{temperature} </h2>
+          <div className="text-3xl">°C</div>
+        </div>
+
+        {forecast && forecast.length > 0 && (
+          <div className="flex mt-18 ml-4 text-md">
+            <div className="flex">
+              <p>H </p>
+              {Math.round(forecast[0].minTemp)}
+              <span className="text-sm">°C</span>
+            </div>
+            <div className="flex">
+              <p>L </p>
+              {Math.round(forecast[0].maxTemp)}
+              <span className="text-sm">°C</span>
+            </div>
+          </div>
+        )}
       </div>
 
       <video
@@ -39,7 +57,7 @@ export default function Homepage({
       />
 
       <div className="mt-40">
-        <div className="flex flex-row place-content-between">
+        <div className="flex flex-row gap-2">
           {forecast && forecast.length > 0 ? (
             forecast.map((item, index) => {
               const localTime = new Date((item.dt + timezone) * 1000);
@@ -48,23 +66,32 @@ export default function Homepage({
               return (
                 <div
                   key={index}
-                  className="flex flex-col items-center gap-1 mr-1 ml-1"
+                  className="flex flex-col items-center mr-1 ml-1"
                 >
                   <p>{dayShort}</p>
                   <video
-                    src={iconMap[item.weather[0].icon]}
+                    src={iconMap[item.weather?.[0]?.icon]}
                     autoPlay
                     loop
                     muted
                     preload="auto"
                     playsInline
-                    className="w-16 h-16"
+                    className="w-12 h-12"
                   />
 
                   <h3 className="text-sm">
-                    {Math.round(item.main.temp)}
-
-                    <span className="text-sm">°C</span>
+                    <div className="flex flex-col gap-1">
+                      <div className="flex">
+                        <p>H</p>
+                        {Math.round(item.minTemp)}
+                        <span className="text-sm">°C</span>
+                      </div>
+                      <div className="flex">
+                        <p>L</p>
+                        {Math.round(item.maxTemp)}
+                        <span className="text-sm">°C</span>
+                      </div>
+                    </div>
                   </h3>
                 </div>
               );

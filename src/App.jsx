@@ -5,7 +5,17 @@ import Search from "./Search";
 import "./App.css";
 
 function App() {
-  const [weather, setWeather] = useState([]);
+  const [weather, setWeather] = useState({
+    city: "",
+    temperature: 0,
+    description: "",
+    humidity: 0,
+    wind: 0,
+    dt: 0,
+    timezone: 0,
+    icon: "",
+    weatherCode: "",
+  });
   const [forecast, setForecast] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -20,6 +30,8 @@ function App() {
       );
 
       const data = await resWeather.json();
+
+      console.log(data);
 
       setWeather({
         city: data.name,
@@ -39,15 +51,44 @@ function App() {
 
       const dataForecast = await resForecast.json();
 
-      const dailyForecast = dataForecast.list
-        .filter((item) => item.dt_txt.includes("12:00:00"))
-        .map((item) => ({
-          ...item,
-          weather: item.weather.map((w) => ({
-            ...w,
-            icon: w.icon.replace("n", "d"),
-          })),
-        }));
+      const dailyTemps = {};
+      dataForecast.list.forEach((item) => {
+        const date = item.dt_txt.split(" ")[0];
+        if (!dailyTemps[date]) dailyTemps[date] = [];
+        dailyTemps[date].push(item.main.temp);
+      });
+
+      const dates = Object.keys(dailyTemps);
+      const firstFullDayIndex = dates.findIndex((date) =>
+        dataForecast.list.some(
+          (i) => i.dt_txt.startsWith(date) && i.dt_txt.includes("12:00:00")
+        )
+      );
+      const dailyForecast = dates
+        .slice(firstFullDayIndex, firstFullDayIndex + 5)
+        .map((date) => {
+          const temps = dailyTemps[date];
+
+          const noonItem = dataForecast.list.find(
+            (i) => i.dt_txt.startsWith(date) && i.dt_txt.includes("12:00:00")
+          );
+
+          return {
+            date,
+            dt: noonItem
+              ? noonItem.dt
+              : dataForecast.list.find((i) => i.dt_txt.startsWith(date)).dt,
+            minTemp: Math.min(...temps),
+            maxTemp: Math.max(...temps),
+            weather: noonItem
+              ? noonItem.weather.map((w) => ({
+                  ...w,
+                  icon: w.icon.replace("n", "d"),
+                }))
+              : [],
+            dt_txt: noonItem ? noonItem.dt_txt : date,
+          };
+        });
 
       setForecast(dailyForecast);
     } catch (error) {
