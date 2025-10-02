@@ -17,7 +17,7 @@ export default function Homepage({
     <div className="pb-5 px-10 flex-1 flex flex-col justify-between  md:mt-10 md:mr-80 md:ml-80 md:mb-10">
       <div class="w-full md:flex md:justify-between">
         <div>
-          <h1 className="text-4xl mt-1 mb-1 capitalize font-semibold md:text-5xl md:mt-4">
+          <h1 className="text-4xl mt-1 mb-1 capitalize font-semibold md:text-8xl md:mt-4">
             {city}
           </h1>
           <div className="flex flex-row text-sm md:text-xl font-light">
@@ -31,7 +31,7 @@ export default function Homepage({
 
         <div className="flex flex-col md:items-center">
           <div className="flex flex-row mt-4">
-            <h2 className="text-8xl mb-2 font-semibold md:text-8xl">
+            <h2 className="text-8xl mb-2 font-semibold md:text-9xl">
               {temperature}{" "}
             </h2>
             <div className="text-2xl mt-3">°C</div>
@@ -58,7 +58,7 @@ export default function Homepage({
             muted
             preload="auto"
             playsInline
-            className="w-24 h-24 md:w-28 md:h-28"
+            className="w-24 h-24 md:w-30 md:h-30"
           />
         </div>
       </div>
