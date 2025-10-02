@@ -11,8 +11,8 @@ export default function Search({ onSearch }) {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit} className="mt-3 mb-3 text-center">
+    <div className="container">
+      <form onSubmit={handleSubmit} className="mt-3 mb-3 text-left">
         <input
           type="search"
           placeholder="Enter a city.."

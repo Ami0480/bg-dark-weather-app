@@ -14,8 +14,8 @@ export default function Homepage({
   forecast,
 }) {
   return (
-    <div className="container p-4">
-      <h1 className="text-4xl mt-8 mb-2 capitalize">{city}</h1>
+    <div className="container">
+      <h1 className="text-4xl mt-4 mb-2 capitalize font-semibold">{city}</h1>
       <div className="flex flex-row text-md">
         <Time dt={dt} timezone={timezone} />
         <span className="uppercase">| {description}</span>
@@ -23,39 +23,36 @@ export default function Homepage({
       <div className="text-md">
         Humidity: {humidity}%, Wind: {wind}km/h
       </div>
-
-      <div className="flex">
+      <div className="flex flex-col">
         <div className="flex flex-row mt-6">
-          <h2 className="text-7xl mb-2">{temperature} </h2>
-          <div className="text-3xl">°C</div>
+          <h2 className="text-7xl mb-2 font-semibold">{temperature} </h2>
+          <div className="text-2xl">°C</div>
         </div>
-
         {forecast && forecast.length > 0 && (
-          <div className="flex mt-18 ml-4 text-md">
+          <div className="flex  text-md gap-1">
             <div className="flex">
-              <p>H </p>
+              <p>H: </p>
               {Math.round(forecast[0].minTemp)}
-              <span className="text-sm">°C</span>
+              <span className="text-sm">°</span>
             </div>
             <div className="flex">
-              <p>L </p>
+              <p>L: </p>
               {Math.round(forecast[0].maxTemp)}
-              <span className="text-sm">°C</span>
+              <span className="text-sm">°</span>
             </div>
           </div>
         )}
+
+        <video
+          src={iconMap[weatherCode]}
+          autoPlay
+          loop
+          muted
+          preload="auto"
+          playsInline
+          className="w-24 h-24"
+        />
       </div>
-
-      <video
-        src={iconMap[weatherCode]}
-        autoPlay
-        loop
-        muted
-        preload="auto"
-        playsInline
-        className="w-24 h-24"
-      />
-
       <div className="mt-40">
         <div className="flex flex-row gap-2">
           {forecast && forecast.length > 0 ? (
@@ -80,16 +77,14 @@ export default function Homepage({
                   />
 
                   <h3 className="text-sm">
-                    <div className="flex flex-col gap-1">
+                    <div className="flex flex-row gap-1">
                       <div className="flex">
-                        <p>H</p>
                         {Math.round(item.minTemp)}
-                        <span className="text-sm">°C</span>
+                        <span className="text-sm">°</span>
                       </div>
                       <div className="flex">
-                        <p>L</p>
                         {Math.round(item.maxTemp)}
-                        <span className="text-sm">°C</span>
+                        <span className="text-sm">°</span>
                       </div>
                     </div>
                   </h3>

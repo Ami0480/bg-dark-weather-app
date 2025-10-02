@@ -1,5 +1,5 @@
 @reference "tailwindcss";
 
 .container {
-  @apply mx-auto;
+  @apply mx-auto flex flex-col place-items-center;
 }

@@ -105,7 +105,7 @@ function App() {
     <div>
       <Search onSearch={handleSearch} />
       {loading ? (
-        <p className="text-xl mt-20">Loading...</p>
+        <p className="text-xl mt-20 ml-10">Loading...</p>
       ) : (
         <Homepage
           city={weather.city}
