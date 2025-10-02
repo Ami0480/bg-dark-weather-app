@@ -54,7 +54,7 @@ export default function Homepage({
             className="w-24 h-24"
           />
         </div>
-        <div className="mt-28">
+        <div className="mt-20">
           <div className="flex flex-row gap-2">
             {forecast && forecast.length > 0 ? (
               forecast.map((item, index) => {
