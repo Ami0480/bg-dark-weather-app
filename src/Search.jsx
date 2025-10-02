@@ -18,7 +18,7 @@ export default function Search({ onSearch }) {
           placeholder="Enter a city.."
           value={city}
           onChange={(e) => setCity(e.target.value)}
-          className="bg-gray-200 pt-2 pb-2 pl-2 rounded-md focus:outline-none"
+          className="bg-[#f1f1f1]  pt-2 pb-2 pl-2 rounded-md focus:outline-none"
         />
         <input type="submit" value="Search" className="hidden" />
       </form>
