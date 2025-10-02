@@ -14,7 +14,7 @@ export default function Homepage({
   forecast,
 }) {
   return (
-    <div className="pb-5 px-10 flex-1 flex flex-col justify-between  md:mt-10 md:mr-80 md:ml-80 md:mb-10">
+    <div className="pb-5 px-10 flex-1 flex flex-col justify-between  md:mt-10 max-w-screen mx-auto w-[1000px] md:mb-10">
       <div class="w-full md:flex md:justify-between">
         <div>
           <h1 className="text-4xl mt-1 mb-1 capitalize font-semibold md:text-8xl md:mt-4">

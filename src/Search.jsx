@@ -11,7 +11,7 @@ export default function Search({ onSearch }) {
   };
 
   return (
-    <div className="px-10 py-5 md:mr-80 md:ml-80">
+    <div className="px-10 py-5 max-w-screen mx-auto w-[1000px]">
       <form onSubmit={handleSubmit} className="text-left w-full">
         <input
           type="search"

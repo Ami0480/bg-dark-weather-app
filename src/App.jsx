@@ -118,9 +118,11 @@ function App() {
     <div className="flex flex-col w-screen h-screen">
       <Search onSearch={handleSearch} />
       {loading ? (
-        <p className="text-xl md:ml-90 md:mt-14">Loading...</p>
+        <p className="text-xl ml-10 md:ml-90 md:mt-14">Loading...</p>
       ) : weather === null ? (
-        <p className="text-xl mt-20 ml-10">City not found...</p>
+        <p className="text-xl mt-20 ml-10 md:ml-90 md:mt-14">
+          City not found...
+        </p>
       ) : (
         <Homepage
           city={weather.city}
