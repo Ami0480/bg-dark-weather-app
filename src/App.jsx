@@ -18,6 +18,7 @@ function App() {
   });
   const [forecast, setForecast] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const apiKey = "d1193959d2d841ec7555416d715716a6";
 
@@ -30,6 +31,12 @@ function App() {
       );
 
       const data = await resWeather.json();
+
+      if (data.cod !== 200) {
+        setError("City not found");
+        setWeather(null);
+        return;
+      }
 
       console.log(data);
 
@@ -50,6 +57,11 @@ function App() {
       );
 
       const dataForecast = await resForecast.json();
+
+      if (dataForecast.cod !== "200") {
+        setError("Forecast data not available");
+        return;
+      }
 
       const dailyTemps = {};
       dataForecast.list.forEach((item) => {
@@ -92,11 +104,12 @@ function App() {
 
       setForecast(dailyForecast);
     } catch (error) {
-      alert(error.message);
+      setError("Something went wrong. Please try again.");
     } finally {
       setLoading(false);
     }
   };
+
   useEffect(() => {
     handleSearch("Perth");
   }, []);
@@ -106,6 +119,8 @@ function App() {
       <Search onSearch={handleSearch} />
       {loading ? (
         <p className="text-xl mt-20 ml-10">Loading...</p>
+      ) : weather === null ? (
+        <p className="text-xl mt-20 ml-10">City not found...</p>
       ) : (
         <Homepage
           city={weather.city}
