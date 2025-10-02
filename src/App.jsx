@@ -115,7 +115,7 @@ function App() {
   }, []);
 
   return (
-    <div>
+    <div className="flex flex-col w-screen h-screen">
       <Search onSearch={handleSearch} />
       {loading ? (
         <p className="text-xl mt-20 ml-10">Loading...</p>

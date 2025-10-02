@@ -12,7 +12,7 @@ export default function Search({ onSearch }) {
 
   return (
     <div className="container">
-      <form onSubmit={handleSubmit} className="mt-3 mb-3 text-left">
+      <form onSubmit={handleSubmit} className="text-left">
         <input
           type="search"
           placeholder="Enter a city.."
