@@ -1,5 +1,1 @@
 @reference "tailwindcss";
-
-.container {
-  @apply mx-auto flex flex-col place-items-center p-3;
-}

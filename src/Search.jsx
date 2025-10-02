@@ -11,14 +11,14 @@ export default function Search({ onSearch }) {
   };
 
   return (
-    <div className="container">
-      <form onSubmit={handleSubmit} className="text-left">
+    <div className="px-10 py-5 md:mr-80 md:ml-80">
+      <form onSubmit={handleSubmit} className="text-left w-full">
         <input
           type="search"
           placeholder="Enter a city.."
           value={city}
           onChange={(e) => setCity(e.target.value)}
-          className="bg-[#f1f1f1]  pt-2 pb-2 pl-2 rounded-md focus:outline-none"
+          className="bg-[#f1f1f1]  pt-2 pb-2 pl-2 rounded-md focus:outline-none w-full"
         />
         <input type="submit" value="Search" className="hidden" />
       </form>
